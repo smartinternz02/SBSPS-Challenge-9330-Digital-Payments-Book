@@ -69,7 +69,8 @@ h3 {
   color: black;
 }
 /* END OF TEXT STYLINGS --------------------------------*/
-.flash-failure, .flash-success {
+.flash-failure,
+.flash-success {
   display: flex;
   width: 100%;
   height: 80px;
@@ -96,7 +97,8 @@ h3 {
   padding: 0rem 1rem 0rem 1rem;
 }
 
-.dimmed-message-wrap, .light-message-wrap {
+.dimmed-message-wrap,
+.light-message-wrap {
   background-color: var(--dimmed-container);
   display: flex;
   width: 100%;
@@ -150,7 +152,7 @@ h3 {
   justify-content: flex-end;
   width: 100vw;
   height: 100vh;
-  background-image: url('../static/assets/Sign Up.png');
+  background-image: url("../static/assets/Sign Up.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: absolute;
@@ -267,7 +269,7 @@ h3 {
 }
 
 .pay-hero-button {
-  display:flex;
+  display: flex;
   border: 1px solid black;
   width: 120px;
   height: 54px;
@@ -592,7 +594,6 @@ h3 {
   padding: 1.5rem;
 }
 
-
 .button {
   background-color: var(--primary-blue);
   display: flex;
@@ -604,6 +605,10 @@ h3 {
   padding-left: 1em;
   font-size: 15px;
   border: 0;
+}
+
+.dark-button {
+  background-color: black;
 }
 
 .additional-info {
@@ -670,6 +675,11 @@ h3 {
   flex-direction: column;
   justify-content: space-between;
   margin-top: 1rem;
+}
+
+.extra-height {
+  height: fit-content;
+  gap: 1rem;
 }
 
 /* END OF COMMONS --------------------------------------------------------------------------*/
