@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Lists | Cart</title>
+  </head>
+  <body>
+    <div class="nav-container">
+      <ul class="navbar">
+        <li>
+          <a href="{{ url_for('dashboard') }}"
+            ><img src="../static/assets/Dashboard Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Dashboard</p>
+        </li>
+        <li>
+          <a href="{{ url_for('dues') }}"
+            ><img src="../static/assets/Payments Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Payments</p>
+        </li>
+        <li>
+          <a href="{{ url_for('compare') }}"
+            ><img src="../static/assets/Analysis Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Analysis</p>
+        </li>
+        <li>
+          <a href="{{ url_for('products') }}"
+            ><img src="../static/assets/Cart Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Products</p>
+        </li>
+        <li>
+          <a href="{{ url_for('profile') }}"
+            ><img src="../static/assets/Account Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Account</p>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 class="page-hero">Shopping Lists</h1>
+          <p class="title-caption">Saved Purchase List</p>
+        </div>
+      </div>
+      <!--CUSTOM CONTENT BEGINNING-->
+      <div class="mini-controls">
+        <div class="mini-control-heading">
+          <h3>Saved Lists</h3>
+        </div>
+      </div>
+      {% if list_data %}
+        <div class="pay-tb-wrap custom-width">
+          <div class="pay-tb-th">
+            <p class="pay-tb-values">Product Name</p>
+            <p class="pay-tb-values">Quantity</p>
+            <p class="pay-tb-values">Month</p>
+          </div>
+            {% for record in list_data %}
+              <div class="pay-tb-td">
+                  <p class="pay-tb-values">{{ record['product_name'] }}</p>
+                  <p class="pay-tb-values">{{ record['quantity'] }}</p>
+                  <p class="pay-tb-values">{{ record['month'] }}</p>
+                </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="dimmed-message-wrap">
+          <p>No Dues Remaining.</p>
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

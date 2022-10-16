@@ -1,0 +1,9 @@
+cs50==9.2.2
+Flask==2.0.1
+Flask-Session==0.4.0
+stripe==4.1.0
+Werkzeug==2.0.1
+WTForms==3.0.1
+python-dateutil==2.8.2
+Flask-WTF==1.0.1
+Jinja2==3.0.1

@@ -1,0 +1,1095 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+:root {
+  --primary-blue: #0062ff;
+  --dimmed-text: #74748a;
+  --dimmed-border: #9f9fad;
+  --bg-color: #f5f5fd;
+  --dimmed-container: #ececf6;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f5fd;
+}
+
+.btn-active {
+  background-color: black;
+  color: white;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* TEXT STYLINGS ---------------------------------------*/
+.page-hero {
+  color: var(--primary-blue);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.secondary {
+  color: black;
+}
+
+.title-caption {
+  color: var(--dimmed-text);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.dimmed {
+  color: var(--dimmed-text);
+}
+
+.text-active {
+  color: var(--primary-blue);
+}
+
+.red-text {
+  color: red;
+}
+
+.dark-text {
+  color: black;
+}
+/* END OF TEXT STYLINGS --------------------------------*/
+.flash-failure, .flash-success {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  z-index: 999999999999999;
+}
+
+.flash-success {
+  background-color: var(--primary-blue);
+}
+
+.common-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-blue);
+  color: white;
+  height: 30px;
+  width: fit-content;
+  font-size: 14px;
+  padding: 0rem 1rem 0rem 1rem;
+}
+
+.dimmed-message-wrap, .light-message-wrap {
+  background-color: var(--dimmed-container);
+  display: flex;
+  width: 100%;
+  height: 160px;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  margin-top: 1rem;
+}
+
+.light-message-wrap {
+  background-color: white;
+}
+
+.monthly-wrap-margin {
+  margin-top: 2rem;
+}
+
+.dimmed-container-checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--dimmed-container);
+  width: 70%;
+  height: 300px;
+  margin: auto;
+}
+
+.dimmed-container-checkout h1 {
+  font-size: 30px;
+  font-weight: 400;
+  color: black;
+}
+
+.dimmed-container-checkout a {
+  padding: 0.75rem;
+  color: white;
+  background-color: var(--primary-blue);
+}
+
+.custom-width {
+  display: flex;
+  width: 350px;
+}
+
+/* LOGIN SPECIFICS ------------------------------------------------------- */
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../static/assets/Sign Up.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: absolute;
+  top: 10;
+  background-size: cover;
+}
+
+.login-right-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.login-right-side form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  width: 80%;
+  height: fit-content;
+  background-color: white;
+  padding: 2rem;
+}
+
+.form-field {
+  border: 1px solid black;
+  width: 100%;
+  height: 20px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.is-invalid {
+  color: red;
+  border: 1px solid red;
+}
+
+.form-submit {
+  background-color: var(--primary-blue);
+  width: 100%;
+  padding: 0.5rem;
+  color: white;
+  margin-top: 1rem;
+}
+
+.login-bottom-text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form-error {
+  color: red;
+  margin-top: 0.2rem;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.form-field-no-margin {
+  margin-top: 0rem;
+}
+/* END OF LOGIN SPECIFICS ------------------------------------------------------- */
+
+.nav-container {
+  background-color: black;
+  display: flex;
+}
+
+.navbar {
+  display: flex;
+}
+
+.navbar a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.tool-tip {
+  position: absolute;
+  padding: 1rem;
+  background-color: #0062ff;
+  color: white;
+  left: 4%;
+  display: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 306px;
+  width: 100%;
+  padding: 0 3rem 0 3rem;
+}
+
+.hero {
+  display: flex;
+  min-width: 306px;
+  width: 100%;
+  height: fit-content;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--dimmed-border);
+}
+
+.hero-right {
+  display: flex;
+  text-align: right;
+  align-items: center;
+}
+
+.pay-hero-button {
+  display:flex;
+  border: 1px solid black;
+  width: 120px;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-controls {
+  display: flex;
+  padding: 1rem 0 1rem 0;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
+.mini-button-wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mini-button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-width: 88px;
+  font-size: 15px;
+  background-color: var(--bg-color);
+}
+
+.pay-tb-wrap {
+  display: flex;
+  flex-direction: column;
+  min-width: 306px;
+  width: 100%;
+  height: fit-content;
+  margin-top: 1rem;
+  border: 1px solid black;
+}
+
+.pay-tb-th,
+.pay-tb-bp {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: white;
+}
+
+.pay-tb-bp {
+  background-color: var(--primary-blue);
+}
+
+.pay-tb-td {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid var(--dimmed-border);
+  background-color: white;
+}
+
+.pay-tb-values {
+  width: 15%;
+  text-align: center;
+}
+
+.main-split-comp {
+  display: flex;
+  gap: 1rem;
+}
+
+.description-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 1rem;
+}
+
+.desc-mini-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.desc-sub-wrap {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 0 1rem 0;
+}
+
+.profile-wrap {
+  display: flex;
+  gap: 1rem;
+}
+
+.profile-user-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 304px;
+  height: 600px;
+  margin-top: 1rem;
+  background-color: var(--dimmed-container);
+}
+
+.profile-user-wrap button {
+  width: 90%;
+}
+
+.profile-pic {
+  background-color: #0062ff;
+  width: 304px;
+  height: 304px;
+}
+
+.user-details-dark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: black;
+  width: 304px;
+  height: 60px;
+  padding-left: 1rem;
+  color: white;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+  height: 178px;
+}
+
+.user-details-add {
+  padding-left: 1rem;
+}
+
+.profile-add-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-additionals {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 304px;
+  height: 172px;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--dimmed-container);
+}
+
+.profile-additionals button {
+  background-color: black;
+}
+
+/* DASHBOARD SPECIFIC CSS --------------------------------------------------------------------*/
+.main-top-wrap {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.section-title-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.due-card-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.due-card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.due-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-evenly;
+  padding: 0 1rem 0 1rem;
+  height: 78%;
+}
+
+.due-details img {
+  height: 70px;
+  width: 70px;
+}
+
+.due-pay-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.due-pay-details div {
+  text-align: center;
+}
+
+.due-pay-details h2,
+.freq-card h2 {
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.due-pay-details span {
+  font-weight: 900;
+}
+
+.due-pay-headline {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.due-pay-btn {
+  height: 22%;
+}
+
+.due-pay-form {
+  height: 100%;
+}
+
+.due-pay-btn button {
+  color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: 0;
+  background-color: var(--primary-blue);
+}
+
+.main-btm-partition {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.monthly-comp-section {
+  width: 55%;
+}
+
+.frequent-section {
+  width: 40%;
+}
+
+.freq-card-wrapper {
+  display: grid;
+  justify-content: stretch;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, auto));
+  margin-top: 1rem;
+}
+
+.freq-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  height: 200px;
+  padding: 1.5rem;
+}
+
+.freq-card div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.freq-card p {
+  font-size: 16px;
+}
+
+.freq-card-h3 {
+  font-size: 17px;
+}
+
+.monthly-table {
+  display: flex;
+  flex-direction: column;
+  height: 230px;
+  border: 1px solid black;
+  margin-top: 1rem;
+}
+
+.mt-table-heading {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.mt-table-values {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.infobar {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dimmed-container);
+  height: 100vh;
+}
+
+.cal-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: black;
+  color: white;
+  min-height: 210px;
+  padding: 1.5rem;
+}
+
+
+.button {
+  background-color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  color: white;
+  width: 100%;
+  height: 30px;
+  text-align: left;
+  padding-left: 1em;
+  font-size: 15px;
+  border: 0;
+}
+
+.additional-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 270px;
+  margin-top: 1em;
+  padding: 1.5rem;
+}
+
+.add-pay-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25%;
+  padding: 0 0.5em 0 0.5em;
+  font-size: 100%;
+  margin-top: 1rem;
+}
+
+.add-pdt-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50%;
+  overflow: hidden;
+}
+
+.add-pay-details p {
+  max-width: 150px;
+}
+
+/* END OF DASHBOARD SPECIFIC CSS -------------------------------------------------------------*/
+.product-specific-wrap {
+  width: 100%;
+}
+
+.pdt-spfc-card-wrap {
+  display: grid;
+  justify-content: stretch;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  margin-top: 1rem;
+}
+
+.product-specific {
+  height: 250px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.product-quantity {
+  border: 1px solid black;
+}
+
+.remove-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* END OF COMMONS --------------------------------------------------------------------------*/
+
+/* LAPTOP VERSION --------------------------------------------------------------------------*/
+@media (min-width: 1200px) {
+  p,
+  .freq-card p {
+    font-size: 14px;
+  }
+  .nav-container {
+    justify-content: center;
+    width: 58px;
+    min-height: 700px;
+    padding: 2rem 0 25rem 0;
+  }
+
+  .navbar {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .navbar li {
+    display: flex;
+    height: 40px;
+    width: 40px;
+  }
+
+  .navbar img {
+    max-width: 15px;
+    height: auto;
+  }
+
+  .main {
+    padding: 0 2rem 0 2rem;
+  }
+
+  .hero {
+    padding: 1.5rem 0rem 1rem 0rem;
+  }
+
+  .pay-hero-button {
+    width: 85px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .page-hero {
+    font-size: 1.3rem;
+  }
+
+  .title-caption {
+    font-size: 0.8rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .pay-tb-th,
+  .pay-tb-td,
+  .pay-tb-bp {
+    padding: 0.5rem;
+  }
+
+  .pay-tb-values {
+    font-size: 0.7rem;
+  }
+
+  .desc-sub-wrap p {
+    font-size: 15px;
+  }
+
+  .infobar {
+    width: 370px;
+  }
+
+  .cal-menu {
+    min-height: 190px;
+  }
+
+  .additional-info {
+    min-height: 250px;
+  }
+
+  .due-card h2,
+  .freq-card h2 {
+    font-size: 24px;
+  }
+
+  .due-pay-headline p {
+    font-size: 13px;
+  }
+
+  .due-card {
+    width: 35%;
+    height: 150px;
+  }
+
+  .due-details {
+    justify-content: center;
+    gap: 0;
+  }
+
+  .due-pay-details {
+    width: 70%;
+  }
+
+  .monthly-table {
+    height: fit-content;
+  }
+
+  .navbar li:hover .tool-tip {
+    display: block;
+  }
+}
+/* END OF LAPTOP ---------------------------------------------------------------------------*/
+
+/* FOR EXTRA LARGE SCREENS -----------------------------------------------------------------*/
+@media (min-width: 1600px) {
+  .nav-container {
+    justify-content: center;
+    width: 58px;
+    min-height: 700px;
+    padding: 2rem 0 30rem 0;
+  }
+
+  .navbar {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .navbar li {
+    display: flex;
+    height: 46px;
+    width: 46px;
+  }
+
+  .navbar img {
+    max-width: 21px;
+    height: auto;
+  }
+
+  .main {
+    padding: 0 3rem 0 3rem;
+  }
+
+  .hero {
+    padding: 2rem 0rem 1rem 0rem;
+  }
+
+  .page-hero {
+    font-size: 1.7rem;
+  }
+
+  .pay-hero-button {
+    width: 120px;
+    height: 54px;
+    font-size: 15px;
+  }
+
+  .title-caption {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .pay-tb-th,
+  .pay-tb-td,
+  .pay-tb-bp {
+    padding: 0.7rem;
+  }
+
+  .pay-tb-values {
+    font-size: 1rem;
+  }
+
+  .cal-menu {
+    min-height: 210px;
+  }
+
+  .additional-info {
+    min-height: 270px;
+  }
+
+  .due-card {
+    width: 25%;
+    height: 150px;
+  }
+
+  .monthly-table {
+    height: fit-content;
+  }
+
+  .navbar li:hover .tool-tip {
+    display: block;
+  }
+}
+/* END OF LARGE SCREENS ----------------------------------------------------------------------*/
+
+/* MOBILE CSS --------------------------------------------------------------------------------*/
+@media (max-width: 1200px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-container {
+    justify-content: center;
+    min-width: 304px;
+  }
+
+  .login-right-side {
+    width: 100%;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 360px;
+    height: 53px;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    padding: 0rem 2rem 0rem 2rem;
+    list-style-type: none;
+  }
+
+  .navbar li {
+    display: flex;
+    height: 27px;
+    width: 27px;
+  }
+
+  .navbar img {
+    max-width: 13px;
+    height: auto;
+  }
+
+  .main {
+    padding: 0 2rem 0 2rem;
+  }
+
+  .hero {
+    padding: 1rem 0 1rem 0;
+  }
+
+  .page-hero {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .title-caption {
+    font-size: 0.8rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .pay-tb-th,
+  .pay-tb-td,
+  .pay-tb-bp {
+    padding: 0.4rem;
+  }
+
+  .temp-view {
+    display: none;
+  }
+
+  .pay-tb-values {
+    font-size: 0.7rem;
+    width: 25%;
+  }
+
+  .pay-hero-button {
+    width: 80px;
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .mini-controls {
+    padding: 0.4rem 0 0.4rem 0;
+  }
+
+  .mini-button {
+    min-width: 50px;
+    font-size: 12px;
+    color: var(--dimmed-text);
+  }
+
+  h3,
+  .dimmed title-caption {
+    font-size: 15px;
+  }
+
+  .description-wrap {
+    width: 100%;
+  }
+
+  .main-btm-partition {
+    flex-direction: column;
+  }
+
+  .infobar {
+    margin: 1rem;
+    min-width: 304px;
+  }
+
+  .cal-menu,
+  .additional-info {
+    min-width: 304px;
+    width: 100%;
+  }
+
+  .monthly-comp-section {
+    width: 100%;
+  }
+
+  .monthly-table {
+    height: fit-content;
+  }
+
+  .frequent-section {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .due-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 0.5rem;
+    gap: 0;
+  }
+
+  .due-details img {
+    height: auto;
+    width: 30px;
+  }
+
+  .due-pay-details {
+    width: 100%;
+    text-align: left;
+  }
+
+  .due-pay-details div {
+    text-align: left;
+  }
+
+  .due-card h2,
+  .freq-card h2 {
+    font-size: 17px;
+  }
+
+  .due-pay-headline {
+    flex-direction: column;
+    height: fit-content;
+    gap: 0;
+  }
+
+  .due-pay-headline p {
+    font-size: 11px;
+  }
+
+  p,
+  .freq-card p {
+    font-size: 13px;
+  }
+
+  .due-card {
+    width: 110px;
+    height: 150px;
+  }
+
+  .infobar {
+    background-color: transparent;
+  }
+
+  .additional-info {
+    background-color: #ececf6;
+  }
+
+  .profile-wrap {
+    flex-direction: column;
+  }
+
+  .navbar li:hover .tool-tip {
+    display: none;
+  }
+}
+/* END OF MOBILE --------------------------------------------------------------------------*/
+
+/* COMMON HOVER EFFECTS -------------------------------------------------------------------*/
+.navbar li:hover {
+  background-color: var(--primary-blue);
+  transition: 0.5s;
+}
+
+.button:hover,
+.primary-button:hover,
+.common-button:hover {
+  background-color: #003fa5;
+  transition: 0.5s;
+}

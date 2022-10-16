@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Dashboard | Amends</title>
+  </head>
+  <body>
+    <div class="nav-container">
+      <ul class="navbar">
+        <li>
+          <a href="{{ url_for('dashboard') }}"
+            ><img src="../static/assets/Dashboard Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Dashboard</p>
+        </li>
+        <li>
+          <a href="{{ url_for('dues') }}"
+            ><img src="../static/assets/Payments Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Payments</p>
+        </li>
+        <li>
+          <a href="{{ url_for('compare') }}"
+            ><img src="../static/assets/Analysis Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Analysis</p>
+        </li>
+        <li>
+          <a href="{{ url_for('products') }}"
+            ><img src="../static/assets/Cart Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Products</p>
+        </li>
+        <li>
+          <a href="{{ url_for('profile') }}"
+            ><img src="../static/assets/Account Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Account</p>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 class="page-hero">Dashboard</h1>
+          <p class="title-caption">One Place for All</p>
+        </div>
+        <div class="hero-right">
+          <div class="hero-right-sub">
+            {% if budget %}
+              <h1 class="page-hero secondary">₹{{ budget[0]['budget'] }}</h1>
+            {% else %}
+              <h1 class="page-hero secondary"><a href="{{ url_for('profile') }}">Set Budget</a></h1>
+            {% endif %}
+            <p class="title-caption">Budget for this month</p>
+          </div>
+        </div>
+      </div>
+      <!--CUSTOM CONTENT BEGINNING-->
+      <div class="main-top-wrap">
+        <div class="section-title-header">
+          <h3>Upcoming Dues</h3>
+          <h3><a href="{{ url_for('dues') }}" class="dimmed">View More</a></h3>
+        </div>
+        <div class="due-card-wrapper">
+          {% if dues %}
+            {% for due in dues %}
+              <div class="due-card">
+                <div class="due-details">
+                  <!--Icon Container-->
+                  <img src="../static/assets/due-card.svg" alt="" />
+
+                  <!--Middle Part of the card-->
+                  <!--Top details-->
+                  <div class="due-pay-details">
+                    <div class="due-pay-headline">
+                      <p>#{{ due['bill_id'] }}</p>
+                      <p class="red-text">{{ due['due_date'] }}</p>
+                    </div>
+                    <!--Money Details-->
+                    <div>
+                      <h2>${{ due['product_due'] }} <span class="dimmed temp-view">/ {{ due['product_total'] }}</span></h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="due-pay-btn">
+                  <form action="/create-checkout-session" method="POST" class="due-pay-form">
+                    <input
+                      type="hidden"
+                      value="due"
+                      name="pay_type"
+                    />
+                    <input
+                      type="hidden"
+                      value="{{ due['bill_id'] }}"
+                      name="bill_id"
+                    />
+                    <input
+                      type="hidden"
+                      value="{{ user_id }}"
+                      name="cart_code"
+                    />
+                    <button type="submit">Pay</button>
+                  </form>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="dimmed-message-wrap">
+              <p>No Dues Remaining.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="main-btm-partition">
+        <div class="monthly-comp-section">
+          <div class="section-title-header">
+            <h3>Monthly Comparison</h3>
+            <h3>
+              <a href="{{ url_for('compare') }}" class="dimmed"
+                >Custom Compare</a
+              >
+            </h3>
+          </div>
+          {% if previous_month_data and current_month_data %}
+            {% if previous_month_data %}
+              {% for record in previous_month_data  %}
+                <div class="monthly-table">
+                  <div class="mt-table-heading">
+                    <p>{{ record['month'] }}</p>
+                  </div>
+                  <div class="mt-table-values">
+                    <p>Budget</p>
+                    <p class="accent-text">{{ record['budget'] }}</p>
+                  </div>
+                  <div class="mt-table-values">
+                    <p>Items Bought</p>
+                    <p class="accent-text">{{ record['items_count'] }}</p>
+                  </div>
+                  <div class="mt-table-values">
+                    <p>Total Spent</p>
+                    <p class="accent-text">{{ record['total_expense'] }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% if current_month_data %}
+              {% for record in current_month_data  %}
+                <div class="monthly-table">
+                  <div class="mt-table-heading">
+                    <p>{{ record['month'] }}</p>
+                  </div>
+                  <div class="mt-table-values">
+                    <p>Budget</p>
+                    <p class="accent-text">{{ record['budget'] }}</p>
+                  </div>
+                  <div class="mt-table-values">
+                    <p>Items Bought</p>
+                    <p class="accent-text">{{ record['items_count'] }}</p>
+                  </div>
+                  <div class="mt-table-values">
+                    <p>Total Spent</p>
+                    <p class="accent-text">{{ record['total_expense'] }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% else %}
+            <div class="dimmed-message-wrap monthly-wrap-margin">
+              <p>Not enough Data.</p>
+            </div>
+          {% endif %}
+        </div>
+        <div class="frequent-section">
+          <div class="section-title-dash compact">
+            <h3>Frequently Bought</h3>
+          </div>
+          <div class="freq-card-wrapper">
+            {% if frequent_data %}
+              {% for data in frequent_data%}
+                <div class="freq-card">
+                  <h3 class="text-active freq-card-h3">{{ data['name'] }}</h3>
+                  <div>
+                    <p class="dimmed">Count</p>
+                    <p>{{ data['COUNT(name)'] }}</p>
+                  </div>
+                  <div>
+                    <p class="dimmed">Month</p>
+                    <p>{{ data['month'] }}</p>
+                  </div>
+                  <div>
+                    <p class="dimmed">Price Var.</p>
+                    <p>Normal</p>
+                  </div>
+                  <h2>₹{{ data['total_price'] }}</h2>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="dimmed-message-wrap">
+                <p>No Dues for now.</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="infobar">
+      <div class="cal-menu">
+        <h3>Compare</h3>
+        <p>
+          Click below and compare your expenses to understand your money better.
+        </p>
+        <a href="{{ url_for('compare') }}" class="button">Analyze Now</a>
+      </div>
+      <div class="additional-info">
+        <h3>Recent Payments</h3>
+        {% if recent_data %}
+          {% for record in recent_data %}
+            <div class="add-pay-container">
+              <img src="../assets/pound-symbol.png" alt="" />
+              <div class="add-pdt-details">
+                <p class="txt-overflow">{{ record['name'] }}</p>
+                <p class="txt-overflow dimmed title-caption">{{ record['pay_date'] }}</p>
+              </div>
+              <p>₹{{ record['amount_paid'] }}</p>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="light-message-wrap">
+            <p>No Data for now.</p>
+          </div>
+        {% endif %}
+      </div>
+      <div class="additional-info">
+        <h3>Analysis Overview</h3>
+        <div class="add-pay-container">
+          <p class="txt-overflow">Budget for this Month</p>
+          <p>
+            {% if budget %}
+              ₹{{ budget[0]['budget'] }}
+            {% else %}
+              None
+            {% endif %}
+          </p>
+        </div>
+        <div class="add-pay-container">
+          <p class="txt-overflow">Amount Spent</p>
+          <p>
+            {% if amount_spent %}
+              ₹{{ amount_spent[0]['total_expense'] }}
+            {% else %}
+              None
+              {% endif %}
+          </p>
+        </div>
+        <div class="add-pay-container">
+          <p class="txt-overflow">Most Expensive Month</p>
+          <p>
+            {% if most_expensive %}
+              {{ most_expensive[0]['month'] }}
+            {% else %}
+              None
+            {% endif %}
+          </p>
+        </div>
+        <div class="add-pay-container">
+          <p class="txt-overflow">Least Expensive Month</p>
+          <p>
+            {% if least_expensive %}
+              {{ least_expensive[0]['month'] }}
+            {% else %}
+              None
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

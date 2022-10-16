@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Sign In!</title>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <div class="login-right-side">
+        <form action="/register" method="POST">
+            {{ form.hidden_tag() }}
+            <div>
+              {{ form.username.label }}
+              {% if form.username.errors %} {{
+                form.username(class="form-field is-invalid") }}
+                {% for error in form.username.errors %}
+                  <span class="form-error">{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.username(class="form-field") }}
+              {% endif %}
+            </div>
+            <div>
+              <label for="phone_no">Phone Number</label>
+              <input type="number" maxlength = "10" minlength = "10" name="phone_no" value="phone_no" class="form-field" />
+            </div>
+            <div>
+              {{ form.email.label }}
+              {% if form.email.errors %}
+                {{ form.email(class="form-field is-invalid") }}
+                {% for error in form.email.errors %}
+                  <span class="form-error">{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.email(class="form-field") }}
+              {% endif %}
+            </div>
+            <div>
+              {{ form.password.label }}
+              {% if form.password.errors %}
+                {{ form.password(class="form-field is-invalid") }}
+                {% for error in form.password.errors %}
+                  <span class="form-error">{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.password(class="form-field") }}
+              {% endif %}
+            </div>
+            <div>
+              {{ form.confirm_password.label }}
+              {% if form.confirm_password.errors %}
+                {{  form.confirm_password(class="form-field is-invalid") }}
+                {% for error in form.confirm_password.errors %}
+                  <span class="form-error">{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.confirm_password(class="form-field") }}
+              {% endif %}
+            </div>
+
+            <div class="login-bottom-text">
+              <a href="{{ url_for('login') }}">Login instead?</p>
+            </div>
+            <div class="mail">{{ form.submit (class="form-submit")}}</div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="flash-failure">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+            {% endwith %}
+          </form>
+      </div>
+    </div>
+  </body>
+</html>

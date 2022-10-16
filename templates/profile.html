@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Profile</title>
+  </head>
+  <body>
+    <div class="nav-container">
+      <ul class="navbar">
+        <li>
+          <a href="{{ url_for('dashboard') }}"
+            ><img src="../static/assets/Dashboard Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Dashboard</p>
+        </li>
+        <li>
+          <a href="{{ url_for('dues') }}"
+            ><img src="../static/assets/Payments Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Payments</p>
+        </li>
+        <li>
+          <a href="{{ url_for('compare') }}"
+            ><img src="../static/assets/Analysis Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Analysis</p>
+        </li>
+        <li>
+          <a href="{{ url_for('products') }}"
+            ><img src="../static/assets/Cart Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Products</p>
+        </li>
+        <li>
+          <a href="{{ url_for('profile') }}"
+            ><img src="../static/assets/Account Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Account</p>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 class="page-hero">Profile</h1>
+          <p class="title-caption">Details, Options & More</p>
+        </div>
+      </div>
+      <!--CUSTOM CONTENT BEGINNING-->
+      <div class="profile-wrap">
+        <div class="profile-user-wrap">
+          <div class="profile-pic"></div>
+          <div class="user-details-dark">
+            <p>{{ user_details[0]['username'] }}</p>
+            <p class="dimmed">Joined on 01/01/2020</p>
+          </div>
+          <div class="user-details">
+            <div class="user-details-add">
+              <p class="text-active">Email</p>
+              <p>{{ user_details[0]['email'] }}</p>
+            </div>
+            <div class="user-details-add">
+              <p class="text-active">Phone Number</p>
+              <p>{{ user_details[0]['phone_no'] }}</p>
+            </div>
+            <div class="user-details-add">
+              <p class="text-active">Store You're associated with</p>
+              <p>Arcade Plaza</p>
+            </div>
+          </div>
+          <a href="{{ url_for('edit_profile') }}" class="button">Edit Profile</a>
+        </div>
+        <div class="profile-add-wrap">
+          <div class="profile-additionals">
+            <p class="title-caption dark-text">Budget for this Month</p>
+            <h2 class="text-active">₹{{ user_details[0]['budget'] }}</h2>
+            <h2>₹{{ amount_remains }}</h2>
+            <a href="{{ url_for('edit_profile') }}" class="button">Edit Budget</a>
+          </div>
+          <div class="profile-additionals">
+            <p class="title-caption dark-text">Your Pinned Lists</p>
+            {% if shopping_lists %}
+            {% for record in shopping_lists%}
+              <form action="{{ url_for('list_display') }}" method="POST">
+                  <input type="hidden" name="list_id" value="{{ record['month'] }}">
+                  <button class="button" type="submit">{{ record['month'] }} Essentials</a>
+              </form>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

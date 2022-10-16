@@ -1,0 +1,240 @@
+.login_page {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    height: 100px;
+}
+
+.login-right-side {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+.login-bottom-text {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    color: #74748A;
+    margin: 0em;
+    padding-top: 10px;
+}
+
+#submit-btn {
+    border-radius: 0px;
+    height: 50px;
+    display: grid;
+    width: 80%;
+    font-size: 20px;
+}
+
+form {
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-right: 40px;
+    width: 80%;
+    /*---*/
+    background: rgba(255, 255, 255, 0.81);
+    backdrop-filter: blur(85px);
+}
+
+@media only screen and (max-width:800px) {
+    .login-right-side {
+        padding-left: 65px;
+        width: 400px;
+    }
+    .login-bottom-text {
+        font-size: 15px;
+    }
+}
+
+
+/*--------------------- LOGIN ----------------------*/
+.submit-btn{
+    background-color: #0062ff;
+}
+body {
+    background-image: url('../static/assets/sign-up.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+}
+
+.login_page {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    height: 100px;
+}
+
+.login_left_side {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 62px;
+    line-height: 107px;
+}
+
+.login_right_side {
+    display: grid;
+    align-items: center;
+    background-color: aqua;
+    width: 100%;
+    height: 100vh;
+    font-size: 20px;
+    line-height: 32px;
+    padding-bottom: 10px;
+}
+
+.login_bottom_text {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    color: #74748A;
+    margin: 0em;
+    padding-top: 15px;
+    font-size: 17px;
+    line-height: 32px;
+    padding-bottom: 10px;
+}
+
+#submit_btn {
+    background-color: yellow;
+    border-radius: 0px;
+    font-size: 20px;
+    height: 50px;
+}
+
+label {
+    margin: 0em;
+}
+
+#password-text {
+    padding-top: 10px;
+}
+
+#text {
+    color: #ffffff;
+    width: 416px;
+    height: 214px;
+    text-shadow: 0px 0px 14px rgba(0, 0, 0, 0.45);
+}
+
+.mail {
+    display: grid;
+    font-weight: 400;
+}
+
+.mail_btn {
+    display: grid;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 32px;
+    width: 80%;
+}
+
+.otp_btn {
+    display: grid;
+    padding-top: 20px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 32px;
+    width: 80%;
+}
+
+#otp_btn {
+    border-radius: 0px;
+    height: 50px;
+}
+
+form {
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-right: 40px;
+    width: 80%;
+    background: rgba(255, 255, 255, 0.81);
+    backdrop-filter: blur(85px);
+}
+
+#forgot_psw {
+    text-align: right;
+}
+
+#text_bar {
+    background-color: transparent;
+    border-bottom: 1px black solid;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 90%;
+}
+
+@media only screen and (max-width:800px) {
+    .login_left_side {
+        display: none;
+    }
+    .login_right_side {
+        padding-left: 65px;
+        width: 400px;
+    }
+    .login_bottom_text {
+        font-size: 15px;
+    }
+}
+
+
+/*--------------------- LOGIN END ----------------------*/
+
+
+/*--------------------- OTP ----------------------*/
+
+.login_page {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    height: 100px;
+}
+
+.login_right-side {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.login_bottom-text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 26px;
+    color: #74748A;
+    margin: 0em;
+    padding-top: 15px;
+}
+
+.otp-mail {
+    display: grid;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    padding-bottom: 10px;
+}
+
+@media only screen and (max-width:800px) {
+    .login_right-side {
+        padding-left: 65px;
+        width: 400px;
+    }
+    .login_bottom-text {
+        font-size: 15px;
+    }
+}
+
+
+/*--------------------- OTP END ----------------------*/

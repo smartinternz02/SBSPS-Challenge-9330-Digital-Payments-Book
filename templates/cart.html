@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Cart | Products</title>
+  </head>
+  <body>
+    <div class="nav-container">
+      <ul class="navbar">
+        <li>
+          <a href="{{ url_for('dashboard') }}"
+            ><img src="../static/assets/Dashboard Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Dashboard</p>
+        </li>
+        <li>
+          <a href="{{ url_for('dues') }}"
+            ><img src="../static/assets/Payments Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Payments</p>
+        </li>
+        <li>
+          <a href="{{ url_for('compare') }}"
+            ><img src="../static/assets/Analysis Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Analysis</p>
+        </li>
+        <li>
+          <a href="{{ url_for('products') }}"
+            ><img src="../static/assets/Cart Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Products</p>
+        </li>
+        <li>
+          <a href="{{ url_for('profile') }}"
+            ><img src="../static/assets/Account Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Account</p>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 class="page-hero">Cart</h1>
+          <p class="title-caption">Happy Shopping.</p>
+        </div>
+        <div class="hero-right">
+          <a
+            href="{{ url_for('products') }}"
+            class="pay-hero-button"
+          >
+            Products
+          </a>
+          <a href="{{ url_for('cart') }}" class="pay-hero-button btn-active">
+            Cart
+          </a>
+        </div>
+      </div>
+      <!--CUSTOM CONTENT BEGINNING-->
+      <div class="mini-controls">
+        <div class="mini-control-heading">
+          <h3>Shopping Cart</h3>
+        </div>
+        <div class="mini-button-wrap">
+          <form action="/create-checkout-session" method="POST">
+            <input
+                type="hidden"
+                value="partial"
+                name="pay_type"
+            />
+            <input
+                type="hidden"
+                value="{{ user_id }}"
+                name="cart_code"
+            />
+            <input type="submit" value="Partial Checkout" class="common-button">
+          </form>
+          <form action="/create-checkout-session" method="POST">
+            <input
+                type="hidden"
+                value="full"
+                name="pay_type"
+            />
+            <input
+                type="hidden"
+                value="{{ user_id }}"
+                name="cart_code"
+            />
+            <input type="submit" value="Checkout" class="common-button">
+          </form>
+          <a href="{{ url_for('shopping_list') }}" class="common-button"> Save List</a>
+        </div>
+      </div>
+      <div class="main-split-comp">
+        <form action="/removeitem" method="post" class="remove-form">
+          <select class="form-field form-field-no-margin" name="product_name" required>
+            <option disabled selected value>Product</option>
+              {% for cart_item in cart_items %}
+                <option value="{{ cart_item['product_name'] }}">{{ cart_item['product_name'] }}</option>
+              {% endfor %}
+          </select>
+
+          <input autocomplete="off" autofocus class="form-field form-field-no-margin" name="quantity" placeholder="Quantity" type="number" required>
+        <button class="button" type="submit">Remove Product</button>
+        </form>
+        {% if cart_items %}
+        <div class="pay-tb-wrap">
+          <div class="pay-tb-th">
+            <p class="pay-tb-values">Product Name</p>
+            <p class="pay-tb-values">Product Price</p>
+            <p class="pay-tb-values">Net Quantity</p>
+            <p class="pay-tb-values">Quantity</p>
+            <p class="pay-tb-values">Exp Date</p>
+          </div>
+          {% for cart_item in cart_items %}
+          <div class="pay-tb-td">
+            <p class="pay-tb-values">{{ cart_item['product_name'] }}</p>
+            <p class="pay-tb-values">
+              {{ cart_item['product_price'] }}
+            </p>
+            <p class="pay-tb-values">{{ cart_item['net_quantity'] }}</p>
+            <p class="pay-tb-values">{{ cart_item['quantity'] }}</p>
+            <p class="pay-tb-values">{{ cart_item['exp_date'] }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+          <div class="dimmed-message-wrap">
+            <p>Cart Empty.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

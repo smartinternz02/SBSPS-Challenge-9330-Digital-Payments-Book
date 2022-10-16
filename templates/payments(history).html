@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>History | Payments</title>
+  </head>
+  <body>
+    <div class="nav-container">
+      <ul class="navbar">
+        <li>
+          <a href="{{ url_for('dashboard') }}"
+            ><img src="../static/assets/Dashboard Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Dashboard</p>
+        </li>
+        <li>
+          <a href="{{ url_for('dues') }}"
+            ><img src="../static/assets/Payments Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Payments</p>
+        </li>
+        <li>
+          <a href="{{ url_for('compare') }}"
+            ><img src="../static/assets/Analysis Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Analysis</p>
+        </li>
+        <li>
+          <a href="{{ url_for('products') }}"
+            ><img src="../static/assets/Cart Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Products</p>
+        </li>
+        <li>
+          <a href="{{ url_for('profile') }}"
+            ><img src="../static/assets/Account Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Account</p>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 class="page-hero">Payments</h1>
+          <p class="title-caption">Dues and History</p>
+        </div>
+        <div class="hero-right">
+          <a href="{{ url_for('dues') }}" class="pay-hero-button"> Payments </a>
+          <a href="{{ url_for('history') }}" class="pay-hero-button btn-active">
+            History
+          </a>
+        </div>
+      </div>
+      <!--CUSTOM CONTENT BEGINNING-->
+      <div class="mini-controls">
+        <div class="mini-control-heading">
+          <h3>Transaction History</h3>
+        </div>
+      </div>
+      {% if records %}
+      <div class="pay-tb-wrap">
+        <div class="pay-tb-th">
+          <p class="pay-tb-values">Product Name</p>
+          <p class="pay-tb-values temp-view">Product Price</p>
+          <p class="pay-tb-values">Amount Paid</p>
+          <p class="pay-tb-values temp-view">Payment Method</p>
+          <p class="pay-tb-values temp-view">Payment Type</p>
+          <p class="pay-tb-values">Due Date</p>
+          <p class="pay-tb-values">Status</p>
+          <p class="pay-tb-values temp-view">Pay Date</p>
+        </div>
+        {% for month in month_info %}
+        <div class="pay-tb-bp">
+          <p class="pay-tb-values">{{ month['month'] }}</p>
+        </div>
+        {% for record in records %} {% if record['month'] == month['month'] %}
+        <div class="pay-tb-td">
+          <p class="pay-tb-values">{{ record['name'] }}</p>
+          <p class="pay-tb-values temp-view">₹{{ record['total_price'] }}</p>
+          <p class="pay-tb-values">₹{{ record['amount_paid'] }}</p>
+          <p class="pay-tb-values temp-view">{{ record['pay_method'] }}</p>
+          <p class="pay-tb-values temp-view">{{ record['pay_type'] }}</p>
+          <p class="pay-tb-values">{{ record['due_date'] }}</p>
+          <p class="pay-tb-values">{{ record['status'] }}</p>
+          <p class="pay-tb-values temp-view">{{ record['pay_date'] }}</p>
+        </div>
+        {% endif %} {% endfor %} {% endfor %}
+      </div>
+      {% else %}
+      <div class="dimmed-message-wrap">
+        <p>No Data.</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

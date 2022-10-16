@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Analysis</title>
+  </head>
+  <body>
+    <div class="nav-container">
+      <ul class="navbar">
+        <li>
+          <a href="{{ url_for('dashboard') }}"
+            ><img src="../static/assets/Dashboard Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Dashboard</p>
+        </li>
+        <li>
+          <a href="{{ url_for('dues') }}"
+            ><img src="../static/assets/Payments Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Payments</p>
+        </li>
+        <li>
+          <a href="{{ url_for('compare') }}"
+            ><img src="../static/assets/Analysis Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Analysis</p>
+        </li>
+        <li>
+          <a href="{{ url_for('products') }}"
+            ><img src="../static/assets/Cart Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Products</p>
+        </li>
+        <li>
+          <a href="{{ url_for('profile') }}"
+            ><img src="../static/assets/Account Icon.svg" alt=""
+          /></a>
+          <p class="tool-tip temp-view">Account</p>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 class="page-hero">Analysis</h1>
+          <p class="title-caption">A clean analysis with comparison</p>
+        </div>
+      </div>
+      <!--CUSTOM CONTENT BEGINNING-->
+      <div class="mini-controls">
+        <div class="mini-control-heading">
+          <h3>Compare Your Purchases</h3>
+          <form action="/analysis" method = "POST">
+            {{ form.hidden_tag() }}
+            {{ form.first_month }}
+            {{ form.second_month }}
+            {{ form.submit }}
+          </form>
+
+          <!--BACKEND INSERT FORM HERE------------------------------------->
+        </div>
+      </div>
+      <div class="main-split-comp">
+        <div class="pay-tb-wrap temp-view">
+          <div class="pay-tb-th">
+            <p class="pay-tb-values">Product Name</p>
+            <p class="pay-tb-values">Product Price</p>
+            <p class="pay-tb-values">Quantity</p>
+          </div>
+          <div class="pay-tb-bp">
+            <p class="pay-tb-values">This Month</p>
+          </div>
+          {% if first_records %}
+            {% for record in first_records %}
+              <div class="pay-tb-td">
+                <p class="pay-tb-values">{{ record['name'] }}</p>
+                <p class="pay-tb-values">{{ record['total_price'] }}</p>
+                <p class="pay-tb-values">{{ record['quantity'] }}</p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="dimmed-message-wrap">
+              <p>No Data Found.</p>
+            </div>
+          {% endif %}
+        </div>
+        <div class="pay-tb-wrap">
+          <div class="pay-tb-th">
+            <p class="pay-tb-values">Product Name</p>
+            <p class="pay-tb-values">Product Price</p>
+            <p class="pay-tb-values">Quantity</p>
+          </div>
+          <div class="pay-tb-bp">
+            <p class="pay-tb-values">This Month</p>
+          </div>
+          {% if second_records %}
+            {% for record in second_records %}
+              <div class="pay-tb-td">
+                <p class="pay-tb-values">{{ record['name'] }}</p>
+                <p class="pay-tb-values">{{ record['total_price'] }}</p>
+                <p class="pay-tb-values">{{ record['quantity'] }}</p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="dimmed-message-wrap">
+              <p>No Data Found.</p>
+            </div>
+          {% endif %}
+        </div>
+        <div class="description-wrap">
+          <h3>Description</h3>
+          {% if first_desc %}
+            <div class="desc-mini-wrap">
+              <h3 class="dimmed title-caption">Budget for the month</h3>
+              <div class="desc-sub-wrap">
+                <p>{{ first_desc[0]['budget'] }}</p>
+                <p class="text-active">{{ second_desc[0]['budget'] }}</p>
+              </div>
+            </div>
+            <div class="desc-mini-wrap">
+              <h3 class="dimmed title-caption">Total Expense</h3>
+              <div class="desc-sub-wrap">
+                <p>{{ first_desc[0]['total_expense'] }}</p>
+                <p class="text-active">{{ second_desc[0]['total_expense'] }}</p>
+              </div>
+            </div>
+            <div class="desc-mini-wrap">
+              <h3 class="dimmed title-caption">No. Items Bought</h3>
+              <div class="desc-sub-wrap">
+                <p>{{ first_desc[0]['items_count'] }}</p>
+                <p class="text-active">{{ second_desc[0]['items_count'] }}</p>
+              </div>
+            </div>
+            <div class="desc-mini-wrap">
+              <h3 class="dimmed title-caption">Most Profitable month</h3>
+              <div class="desc-sub-wrap">
+                <p class="text-active">{{ profitable }}</p>
+              </div>
+            </div>
+          {% else %}
+            <div class="dimmed-message-wrap">
+              <p>No Data Found.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
