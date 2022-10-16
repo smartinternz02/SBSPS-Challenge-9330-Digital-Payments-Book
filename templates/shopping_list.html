@@ -60,7 +60,23 @@
         <div class="mini-control-heading">
           <h3>Saved Lists</h3>
         </div>
+        <div class="mini-button-wrap">
+          <form action="/addcart" method="POST">
+            <input
+                type="hidden"
+                value="{{ list_data[0]['month'] }}"
+                name="list_id"
+            />
+            <input
+                type="hidden"
+                value="{{ user_id }}"
+                name="cart_code"
+            />
+            <input type="submit" value="Add to Cart" class="common-button">
+          </form>
+        </div>
       </div>
+    </div>
       {% if list_data %}
         <div class="pay-tb-wrap custom-width">
           <div class="pay-tb-th">

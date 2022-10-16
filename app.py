@@ -416,7 +416,7 @@ def success():
         if budget_check:
             db.execute("UPDATE budgets SET items_count = ?, total_expense = ?;", int(item_count[0]['COUNT(*)']), int(total_expense[0]['SUM(amount_paid)']))
         else:
-            db.execute("INSERT INTO budgets (user_id, items_count, total_expense, month) VALUES (?,?,?);", session['user_id'], int(item_count[0]['COUNT(*)']), int(total_expense[0]['SUM(amount_paid)']), month)
+            db.execute("INSERT INTO budgets (user_id, items_count, total_expense, month) VALUES (?,?,?,?);", session['user_id'], int(item_count[0]['COUNT(*)']), int(total_expense[0]['SUM(amount_paid)']), month)
 
         # Clearing the cart after inserting values into Respective tables
         db.execute("DELETE FROM cart WHERE user_id = ?;", session['user_id'])
@@ -521,8 +521,29 @@ def list_display():
     if request.method == "POST":
         list_id = request.form.get("list_id")
         list_data = db.execute("SELECT * FROM shopping_list WHERE month = ? and user_id = ?;", list_id, session['user_id'])
-
         return render_template("shopping_list.html", list_data = list_data)
+    else:
+        return redirect("/profile")
+
+@app.route("/addcart", methods = ["POST"])
+@login_required
+def add_cart():
+    list_id = request.form.get("list_id")
+    list_items = db.execute("SELECT product_name, quantity FROM shopping_list WHERE month = ? AND user_id = ?;", list_id, session['user_id'])
+
+    for item in list_items:
+        # Retrieving the data from the cart
+        product_details = db.execute("SELECT * FROM products WHERE product_name = ?", item['product_name'])
+        product_id = product_details[0]['product_id']
+        
+        cart_check = db.execute("SELECT * FROM cart WHERE product_name = ? AND user_id = ?;", item['product_name'], session['user_id'])
+        if cart_check:
+            db.execute("UPDATE cart SET quantity = quantity + ? WHERE user_id = ? AND product_id = ?;", item['quantity'], session['user_id'], product_id)
+
+        # Adding items to the Cart
+        db.execute("INSERT INTO cart (user_id, product_id, product_name, net_quantity, product_price, exp_date, quantity) VALUES (?,?,?,?,?,?,?);", session['user_id'], product_id,
+        product_details[0]['product_name'], product_details[0]['net_quantity'], product_details[0]['product_price'], product_details[0]['exp_date'], item['quantity'])
+    return redirect("/products/cart")
 
 if __name__ == "__main__":
   app.run(debug=True, host='0.0.0.0')

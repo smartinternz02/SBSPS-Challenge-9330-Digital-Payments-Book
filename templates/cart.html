@@ -55,10 +55,7 @@
           <p class="title-caption">Happy Shopping.</p>
         </div>
         <div class="hero-right">
-          <a
-            href="{{ url_for('products') }}"
-            class="pay-hero-button"
-          >
+          <a href="{{ url_for('products') }}" class="pay-hero-button">
             Products
           </a>
           <a href="{{ url_for('cart') }}" class="pay-hero-button btn-active">
@@ -73,45 +70,52 @@
         </div>
         <div class="mini-button-wrap">
           <form action="/create-checkout-session" method="POST">
+            <input type="hidden" value="partial" name="pay_type" />
+            <input type="hidden" value="{{ user_id }}" name="cart_code" />
             <input
-                type="hidden"
-                value="partial"
-                name="pay_type"
+              type="submit"
+              value="Partial Checkout"
+              class="common-button"
             />
-            <input
-                type="hidden"
-                value="{{ user_id }}"
-                name="cart_code"
-            />
-            <input type="submit" value="Partial Checkout" class="common-button">
           </form>
           <form action="/create-checkout-session" method="POST">
-            <input
-                type="hidden"
-                value="full"
-                name="pay_type"
-            />
-            <input
-                type="hidden"
-                value="{{ user_id }}"
-                name="cart_code"
-            />
-            <input type="submit" value="Checkout" class="common-button">
+            <input type="hidden" value="full" name="pay_type" />
+            <input type="hidden" value="{{ user_id }}" name="cart_code" />
+            <input type="submit" value="Checkout" class="common-button" />
           </form>
-          <a href="{{ url_for('shopping_list') }}" class="common-button"> Save List</a>
+          <a
+            href="{{ url_for('shopping_list') }}"
+            class="common-button dark-button"
+          >
+            Save List</a
+          >
         </div>
       </div>
       <div class="main-split-comp">
         <form action="/removeitem" method="post" class="remove-form">
-          <select class="form-field form-field-no-margin" name="product_name" required>
+          <select
+            class="form-field form-field-no-margin"
+            name="product_name"
+            required
+          >
             <option disabled selected value>Product</option>
-              {% for cart_item in cart_items %}
-                <option value="{{ cart_item['product_name'] }}">{{ cart_item['product_name'] }}</option>
-              {% endfor %}
+            {% for cart_item in cart_items %}
+            <option value="{{ cart_item['product_name'] }}">
+              {{ cart_item['product_name'] }}
+            </option>
+            {% endfor %}
           </select>
 
-          <input autocomplete="off" autofocus class="form-field form-field-no-margin" name="quantity" placeholder="Quantity" type="number" required>
-        <button class="button" type="submit">Remove Product</button>
+          <input
+            autocomplete="off"
+            autofocus
+            class="form-field form-field-no-margin"
+            name="quantity"
+            placeholder="Quantity"
+            type="number"
+            required
+          />
+          <button class="button" type="submit">Remove Product</button>
         </form>
         {% if cart_items %}
         <div class="pay-tb-wrap">
@@ -125,9 +129,7 @@
           {% for cart_item in cart_items %}
           <div class="pay-tb-td">
             <p class="pay-tb-values">{{ cart_item['product_name'] }}</p>
-            <p class="pay-tb-values">
-              {{ cart_item['product_price'] }}
-            </p>
+            <p class="pay-tb-values">{{ cart_item['product_price'] }}</p>
             <p class="pay-tb-values">{{ cart_item['net_quantity'] }}</p>
             <p class="pay-tb-values">{{ cart_item['quantity'] }}</p>
             <p class="pay-tb-values">{{ cart_item['exp_date'] }}</p>
@@ -135,9 +137,9 @@
           {% endfor %}
         </div>
         {% else %}
-          <div class="dimmed-message-wrap">
-            <p>Cart Empty.</p>
-          </div>
+        <div class="dimmed-message-wrap">
+          <p>Cart Empty.</p>
+        </div>
         {% endif %}
       </div>
     </div>
