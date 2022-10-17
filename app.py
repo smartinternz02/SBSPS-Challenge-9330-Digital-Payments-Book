@@ -116,7 +116,7 @@ def logout():
 @login_required
 def dashboard():
     # Data for Upcoming Dues Section
-    dues = db.execute("SELECT * FROM dues WHERE user_id = ?;", 1)
+    dues = db.execute("SELECT * FROM dues WHERE user_id = ?;", session['user_id'])
 
     # Data for Frequently Bought Section
     # You have to calculate the VARIANCE HERE!!!!-------------
